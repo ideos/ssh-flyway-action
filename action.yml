@@ -17,6 +17,9 @@ inputs:
   compose_file:
     description: Docker compose filename.
     required: false
+  env_file:
+    description: Docker compose env file.
+    required: false
   force_recreate:
     description: Recreate containers even if compose file did not change
     required: false

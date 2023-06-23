@@ -39,6 +39,10 @@ if [ -z "$INPUT_SSH_PORT" ]; then
   INPUT_SSH_PORT=22
 fi
 
+if [ ! -z "$INPUT_ENV_FILE" ]; then
+  INPUT_ENV_FILE='--env-file $INPUT_ENV_FILE'
+fi
+
 # create private key and add it to authentication agent
 mkdir -p $HOME/.ssh
 printf '%s\n' "$INPUT_SSH_KEY" > "$HOME/.ssh/private_key"
@@ -56,7 +60,7 @@ if [ "$INPUT_PULL" == 'true' ]; then
 fi
 
 # deploy stack
-docker-compose -f $INPUT_COMPOSE_FILE up -d $INPUT_BUILD $INPUT_FORCE_RECREATE $INPUT_OPTIONS $INPUT_SERVICE
+docker-compose -f $INPUT_COMPOSE_FILE $INPUT_ENV_FILE up -d $INPUT_BUILD $INPUT_FORCE_RECREATE $INPUT_OPTIONS $INPUT_SERVICE
 
 # cleanup context
 docker context use default 
