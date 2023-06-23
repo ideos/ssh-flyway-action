@@ -47,6 +47,10 @@ if [ ! -z "$INPUT_PROJECT_NAME" ]; then
   INPUT_PROJECT_NAME='-p $INPUT_PROJECT_NAME'
 fi
 
+echo "$INPUT_ENV_FILE"
+echo "$INPUT_PROJECT_NAME"
+ls -a
+
 # create private key and add it to authentication agent
 mkdir -p $HOME/.ssh
 printf '%s\n' "$INPUT_SSH_KEY" > "$HOME/.ssh/private_key"
