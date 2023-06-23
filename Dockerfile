@@ -1,4 +1,4 @@
-FROM docker/compose:latest
+FROM flyway/flyway:9.5.1-alpine
 
 RUN apk add openssh-client
 
