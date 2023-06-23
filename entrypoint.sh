@@ -40,16 +40,12 @@ if [ -z "$INPUT_SSH_PORT" ]; then
 fi
 
 if [ ! -z "$INPUT_ENV_FILE" ]; then
-  INPUT_ENV_FILE='--env-file $INPUT_ENV_FILE'
+  INPUT_ENV_FILE="--env-file $INPUT_ENV_FILE"
 fi
 
 if [ ! -z "$INPUT_PROJECT_NAME" ]; then
-  INPUT_PROJECT_NAME='-p $INPUT_PROJECT_NAME'
+  INPUT_PROJECT_NAME="-p $INPUT_PROJECT_NAME"
 fi
-
-echo "$INPUT_ENV_FILE"
-echo "$INPUT_PROJECT_NAME"
-ls -a
 
 # create private key and add it to authentication agent
 mkdir -p $HOME/.ssh
