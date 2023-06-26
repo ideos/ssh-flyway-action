@@ -58,7 +58,7 @@ ssh-add "$HOME/.ssh/private_key"
 touch "$HOME/.ssh/known_hosts"
 ssh-keyscan -H $INPUT_SSH_HOST >> "$HOME/.ssh/known_hosts"
 
-ssh -fN -L 3265:localhost:$INPUT_DB_PORT -i /tmp/key.pem $INPUT_SSH_USER@$INPUT_SSH_HOST -p $INPUT_SSH_PORT
+ssh -fN -L 3265:localhost:$INPUT_DB_PORT $INPUT_SSH_USER@$INPUT_SSH_HOST -p $INPUT_SSH_PORT
 
 flyway \
   -locations="filesystem:./$INPUT_MIGRATIONS_PATH" \
