@@ -60,7 +60,7 @@ touch /root/.ssh/known_hosts
 ssh-keygen -R "$INPUT_SSH_HOST"
 ssh-keyscan -H "$INPUT_SSH_HOST" >> /root/.ssh/known_hosts
 
-ssh -fN -L 3265:localhost:$INPUT_DB_PORT $INPUT_SSH_USER@$INPUT_SSH_HOST -p $INPUT_SSH_PORT
+ssh -4 -fN -L 3265:localhost:$INPUT_DB_PORT $INPUT_SSH_USER@$INPUT_SSH_HOST -p $INPUT_SSH_PORT
 
 flyway \
   -locations="filesystem:./$INPUT_MIGRATIONS_PATH" \
