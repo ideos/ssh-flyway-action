@@ -50,15 +50,15 @@ if [ -z "$INPUT_SSH_HOST" ]; then
 fi
 
 whoami
-mkdir -p /home/.ssh
-printf '%s\n' "$INPUT_SSH_KEY" > /home/.ssh/private_key
-chmod 600 /home/.ssh/private_key
+mkdir -p /root/.ssh
+printf '%s\n' "$INPUT_SSH_KEY" > /root/.ssh/private_key
+chmod 600 /root/.ssh/private_key
 eval $(ssh-agent)
-ssh-add /home/.ssh/private_key
+ssh-add /root/.ssh/private_key
 
-touch /home/.ssh/known_hosts
+touch /root/.ssh/known_hosts
 ssh-keygen -R "$INPUT_SSH_HOST"
-ssh-keyscan -H "$INPUT_SSH_HOST" >> /home/.ssh/known_hosts
+ssh-keyscan -H "$INPUT_SSH_HOST" >> /root/.ssh/known_hosts
 
 ssh -fN -L 3265:localhost:$INPUT_DB_PORT $INPUT_SSH_USER@$INPUT_SSH_HOST -p $INPUT_SSH_PORT
 
