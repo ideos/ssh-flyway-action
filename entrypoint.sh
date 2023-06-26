@@ -49,14 +49,13 @@ if [ -z "$INPUT_SSH_HOST" ]; then
   exit 1
 fi
 
-mkdir -p $HOME/.ssh
-printf '%s\n' "$INPUT_SSH_KEY" > "$HOME/.ssh/private_key"
-chmod 600 "$HOME/.ssh/private_key"
+mkdir -p ~/.ssh
+printf '%s\n' "$INPUT_SSH_KEY" > ~/.ssh/private_key
+chmod 600 ~/.ssh/private_key
 eval $(ssh-agent)
-ssh-add "$HOME/.ssh/private_key"
+ssh-add ~/.ssh/private_key
 
-touch "$HOME/.ssh/known_hosts"
-ssh-keyscan -H $INPUT_SSH_HOST >> "$HOME/.ssh/known_hosts"
+ssh-keyscan -H "$INPUT_SSH_HOST" >> ~/.ssh/known_hosts
 
 ssh -fN -L 3265:localhost:$INPUT_DB_PORT $INPUT_SSH_USER@$INPUT_SSH_HOST -p $INPUT_SSH_PORT
 
