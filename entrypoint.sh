@@ -49,6 +49,7 @@ if [ -z "$INPUT_SSH_HOST" ]; then
   exit 1
 fi
 
+whoami
 mkdir -p ~/.ssh
 printf '%s\n' "$INPUT_SSH_KEY" > ~/.ssh/private_key
 chmod 600 ~/.ssh/private_key
