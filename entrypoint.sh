@@ -55,6 +55,8 @@ chmod 600 ~/.ssh/private_key
 eval $(ssh-agent)
 ssh-add ~/.ssh/private_key
 
+touch ~/.ssh/known_hosts
+ssh-keygen -R "$INPUT_SSH_HOST"
 ssh-keyscan -H "$INPUT_SSH_HOST" >> ~/.ssh/known_hosts
 
 ssh -fN -L 3265:localhost:$INPUT_DB_PORT $INPUT_SSH_USER@$INPUT_SSH_HOST -p $INPUT_SSH_PORT
