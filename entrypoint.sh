@@ -50,7 +50,10 @@ if [ -z "$INPUT_SSH_HOST" ]; then
 fi
 
 mkdir -p $HOME/.ssh
-printf '%s\n' "$INPUT_SSH_KEY" | tr -d '\r' > /tmp/key.pem
+printf '%s\n' "$INPUT_SSH_KEY" > "$HOME/.ssh/private_key"
+chmod 600 "$HOME/.ssh/private_key"
+eval $(ssh-agent)
+ssh-add "$HOME/.ssh/private_key"
 
 touch "$HOME/.ssh/known_hosts"
 ssh-keyscan -H $INPUT_SSH_HOST >> "$HOME/.ssh/known_hosts"
