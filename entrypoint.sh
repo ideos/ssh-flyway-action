@@ -58,12 +58,12 @@ ssh-add /root/.ssh/private_key
 touch /root/.ssh/known_hosts
 ssh-keyscan -H "$INPUT_SSH_HOST" >> /root/.ssh/known_hosts
 
-ssh -4 -fN -L 3265:localhost:$INPUT_DB_PORT $INPUT_SSH_USER@$INPUT_SSH_HOST -p $INPUT_SSH_PORT
+ssh -4 -fN -L 3265:127.0.0.1:$INPUT_DB_PORT $INPUT_SSH_USER@$INPUT_SSH_HOST -p $INPUT_SSH_PORT
 
 flyway \
   -locations="filesystem:./$INPUT_MIGRATIONS_PATH" \
   -driver="$FLYWAY_DRIVER" \
-  -url="$FLYWAY_URL_PREFIX://localhost:3265/$INPUT_DB_NAME" \
+  -url="$FLYWAY_URL_PREFIX://127.0.0.1:3265/$INPUT_DB_NAME" \
   -user=$INPUT_DB_USER \
   -password=$INPUT_DB_PASSWORD \
   migrate
